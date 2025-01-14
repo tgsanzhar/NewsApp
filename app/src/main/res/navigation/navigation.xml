@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation"
+    app:startDestination="@id/startFragment">
+
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.newsfinalapp.Fragments.StartScreen.StartFragment">
+        <action
+            android:id="@+id/action_start_to_base"
+            app:destination="@id/baseFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/baseFragment"
+        android:name="com.example.newsfinalapp.Fragments.BaseScreen.BaseFragment" >
+        <action
+            android:id="@+id/action_baseFragment_to_newestFragment"
+            app:destination="@id/newestFragment" />
+        <action
+            android:id="@+id/action_baseFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.newsfinalapp.Fragments.Settings.SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_newestFragment"
+            app:destination="@id/newestFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_baseFragment"
+            app:destination="@id/baseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newestFragment"
+        android:name="com.example.newsfinalapp.Fragments.NewestScreen.NewestFragment"
+        android:label="NewestFragment" >
+        <action
+            android:id="@+id/action_newestFragment_to_baseFragment"
+            app:destination="@id/baseFragment" />
+        <action
+            android:id="@+id/action_newestFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+
+
+</navigation>
