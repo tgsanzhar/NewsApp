@@ -9,12 +9,14 @@ data class BaseState(
 )
 
 data class RowNewsItem(
+    val id: Int,
     val imageSrc: String,
     val title: String,
     val subTitle: String
 )
 
 data class ColumnNewsItem(
+    val id: Int,
     val category: String,
     val author: String,
     val readTime: String,

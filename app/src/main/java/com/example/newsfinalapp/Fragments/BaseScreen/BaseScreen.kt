@@ -1,5 +1,8 @@
 package com.example.newsfinalapp.Fragments.BaseScreen
 
+import android.net.Uri
+import android.os.Bundle
+import android.widget.VideoView
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -20,7 +23,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -40,20 +42,76 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import coil3.compose.rememberAsyncImagePainter
 import com.example.newsfinalapp.LocalColors
 import com.example.newsfinalapp.R
+import com.example.newsfinalapp.ext.VideoPlayer
 
 
 @Composable
 fun BaseScreen(
     onEvent: (BaseEvent) -> Unit,
-    state: BaseState
+    state: BaseState,
+    navigate: (Int, Bundle) -> Unit,
 ) {
 
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
+//        var timer = remember { mutableStateOf(-1) }
+        LifecycleEventEffect(Lifecycle.Event.ON_START) {
+            onEvent(BaseEvent.OnGetNews)
+        }
+//        LaunchedEffect(state.rowData.news) {
+//            if (state.rowData.news.isNotEmpty())
+//            {
+//                launch {
+//                    timer.value = 0
+//                    while (timer.value != -1)
+//                    {
+//                        timer.value += 1
+//                        Log.d("TIMER", timer.value.toString())
+//                        delay(1000)
+//                    }
+//                }
+//            }
+//        }
+//
+//        DisposableEffect(Unit) {
+//            onDispose {
+//                timer.value = -1
+//            }
+//        }
+//
+//
+//        AnimatedVisibility(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .height(32.dp),
+//            visible = (timer.value != -1),
+//            enter = slideInVertically(),
+//            exit = slideOutVertically(),
+//        ) {
+//            Box(modifier = Modifier
+//                .fillMaxWidth()
+//                .height(32.dp)
+//                .background(Color(0xFF000aaa))
+//            ) {
+//                Text(
+//                    modifier = Modifier.align(Alignment.Center),
+//                    color = Color(0xFF000000),
+//                    text = timer.value.toString(),
+//                )
+//            }
+//
+//            SideEffect {
+//                Log.d("TIMER", "Show Timer")
+//            }
+//        }
+
 
 
         Column(
@@ -71,11 +129,14 @@ fun BaseScreen(
 
                 }
                 item {
-                    RowList(state)
+                    RowList(state, navigate)
 
                 }
                 item {
                     ColumnList(state)
+                }
+                item {
+                    VideoPlayer()
                 }
                 for (item in state.columnData.news) {
                     item {
@@ -83,6 +144,7 @@ fun BaseScreen(
                         Row (
                             modifier = Modifier
                                 .padding(bottom = 16.dp)
+
                         ) {
 
                             Image(
@@ -151,6 +213,9 @@ fun BaseScreen(
                             .padding(bottom = 78.dp)
                     )
                 }
+
+
+
             }
 
         }
@@ -168,6 +233,7 @@ fun BaseScreen(
         }
     }
 }
+
 
 @Composable
 @OptIn(ExperimentalFoundationApi::class)
@@ -261,6 +327,7 @@ fun BottomNav(onEvent: (BaseEvent) -> Unit, state: BaseState) {
 fun ColumnList(state: BaseState) {
     Row(
         modifier = Modifier.padding(vertical = 24.dp)
+
     ) {
         Text(
             modifier = Modifier.align(Alignment.CenterVertically),
@@ -289,7 +356,7 @@ fun ColumnList(state: BaseState) {
 }
 
 @Composable
-fun RowList(state: BaseState) {
+fun RowList(state: BaseState, navigate: (Int, Bundle) -> Unit) {
     Row(
         modifier = Modifier.padding(vertical = 24.dp)
     ) {
@@ -323,7 +390,13 @@ fun RowList(state: BaseState) {
                 Column(
                     modifier = Modifier
                         .height(256.dp)
-                        .width(130.dp),
+                        .width(130.dp)
+                        .clickable {
+                            val bundle = Bundle()
+                            bundle.putInt("id", item.id)
+                            bundle.putString("type", "column")
+                            navigate(R.id.action_baseFragment_to_newsDetailedFragment, bundle)
+                        },
 
                     ) {
                     Image(

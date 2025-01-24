@@ -6,23 +6,29 @@ import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
+import org.koin.dsl.module
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
+import kotlin.math.sin
 
-class NetworkApi(){
-
-    val okHttpClient by lazy {
+val networkModule = module {
+    single {
         OkHttpClient
             .Builder()
             .readTimeout(60_000, TimeUnit.MILLISECONDS)
             .writeTimeout(60_000, TimeUnit.MILLISECONDS)
             .build()
     }
-
-    val retrofit by lazy {
-        val json = Json {
+    single {
+        Json {
             encodeDefaults = true
         }
+    }
+
+    single {
+        val json: Json = get()
+        val okHttpClient: OkHttpClient = get()
+
         Retrofit.Builder()
             .baseUrl("https://nfactorial.onrender.com/")
             .client(okHttpClient)

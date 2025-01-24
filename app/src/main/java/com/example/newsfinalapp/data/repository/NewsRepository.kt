@@ -95,7 +95,7 @@ class NewsRepository(
     suspend fun getNewsById(
         type: String,
         id: Int
-    ) = newsApi.getNewsById(
+    ):ItemDTO = newsApi.getNewsById(
         type = type,
         id = id
     )

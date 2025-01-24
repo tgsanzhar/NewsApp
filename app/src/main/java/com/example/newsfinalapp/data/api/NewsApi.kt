@@ -18,9 +18,9 @@ interface NewsApi {
 
     @GET("news/{id}")
     suspend fun getNewsById(
+        @Path("id") id: Int,
         @Query("type") type: String,
-        @Path("id") id: Int
-    ): Result<Any>
+    ): ItemDTO
 
     @POST("news")
     suspend fun addNews(

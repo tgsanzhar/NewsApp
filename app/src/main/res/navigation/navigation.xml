@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_baseFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_baseFragment_to_newsDetailedFragment"
+            app:destination="@id/newsDetailedFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -45,6 +48,10 @@
             android:id="@+id/action_newestFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/newsDetailedFragment"
+        android:name="com.example.newsfinalapp.Fragments.NewsDetailedScreen.NewsDetailedFragment"
+        android:label="NewsDetailedFragment" />
 
 
 </navigation>

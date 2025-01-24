@@ -59,6 +59,8 @@ dependencies {
     ksp(libs.room.compiler)
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
+    implementation(libs.koin)
+    implementation(libs.workManager)
 
     implementation(libs.androidx.datastore)
     implementation(libs.okhttp)
