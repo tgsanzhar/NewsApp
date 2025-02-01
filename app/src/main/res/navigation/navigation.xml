@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/startFragment">
+    app:startDestination="@id/recyclerViewXML">
 
 
     <fragment
@@ -52,6 +52,10 @@
         android:id="@+id/newsDetailedFragment"
         android:name="com.example.newsfinalapp.Fragments.NewsDetailedScreen.NewsDetailedFragment"
         android:label="NewsDetailedFragment" />
+    <fragment
+        android:id="@+id/recyclerViewXML"
+        android:name="com.example.newsfinalapp.Fragments.RecyclerTest.RecyclerViewXML"
+        android:label="RecyclerViewXML" />
 
 
 </navigation>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="8dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="86dp"
+        android:layout_height="86dp"
+        android:background="@drawable/filter_chip_drawable"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="5dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/entrepeneur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#828282"
+        android:textSize="14sp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Entrepeneur" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginStart="24dp"
+
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/entrepeneur"
+        android:text="How to promote business right away in instagram" />
+
+    <TextView
+        android:id="@+id/name_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#828282"
+        android:textSize="14sp"
+        android:layout_marginStart="24dp"
+
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        android:text="Bella Gonza  . 12 mins" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
